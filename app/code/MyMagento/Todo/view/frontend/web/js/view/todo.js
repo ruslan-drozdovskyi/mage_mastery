@@ -1,4 +1,4 @@
 define(['uiComponent'], function (Component) {
-    'ue strict';
+    'use strict';
     return Component.extend({});
 });

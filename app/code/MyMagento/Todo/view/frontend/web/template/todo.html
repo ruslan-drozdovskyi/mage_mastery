@@ -1,1 +1,6 @@
-<h2>ToDo UI Component Template</h2>
+<h2>Dynamic list of tasks</h2>
+<ul>
+    <li repeat="foreach: tasks, item: 'task'">
+        <span data-bind="text: task().label"/>
+    </li>
+</ul>

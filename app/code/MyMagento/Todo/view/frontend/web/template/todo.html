@@ -10,6 +10,12 @@
             click: switchStatus
         "></a>
         <span data-bind="text: task().label" class="label"/>
+        <a class="action delete"data-bind="
+            attr: {
+                'data-id': task().id
+            },
+            click: deleteTask.bind($data, task().id)
+        ">Delete</a>
     </li>
 </ul>
 <!-- /ko -->

@@ -1,3 +1,20 @@
+<div class="form-container">
+    <input type="text"
+           class="task-input-field"
+           id="todo-task-input"
+           name="task"
+           value=""
+           placeholder="Add new task..."
+    />
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="button"
+                    title="Add task"
+                    class="action"
+            ><span>Add Task</span></button>
+        </div>
+    </div>
+</div>
 <!-- ko if: ($data.tasks) -->
 <h2>Dynamic list of tasks</h2>
 <ul class="tasks">

@@ -6,6 +6,7 @@ define([
     'use strict';
     return Component.extend({
         defaults: {
+            newTaskLabel: '',
             tasks: [
                 {id: 1, label: "Task #1", status: false},
                 {id: 2, label: "Task #2", status: false},
@@ -15,7 +16,7 @@ define([
         },
 
         initObservable: function () {
-            this._super().observe(['tasks']);
+            this._super().observe(['tasks', 'newTaskLabel']);
             this.tasks().push({id: 5, label: 'Task #5', status:false});
             return this;
         },
@@ -30,6 +31,14 @@ define([
             });
 
             this.tasks(items);
+        },
+        addTask: function () {
+            this.tasks.push({
+                id: Math.floor(Math.random() * 100),
+                label: this.newTaskLabel(),
+                status: false,
+            });
+            this.newTaskLabel('');
         },
         deleteTask: function (taskId) {
             let self = this;

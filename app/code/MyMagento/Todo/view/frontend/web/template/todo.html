@@ -3,6 +3,7 @@
            class="task-input-field"
            id="todo-task-input"
            name="task"
+           ko-value="newTaskLabel"
            value=""
            placeholder="Add new task..."
     />
@@ -11,6 +12,7 @@
             <button type="button"
                     title="Add task"
                     class="action"
+                    data-bind="click: addTask"
             ><span>Add Task</span></button>
         </div>
     </div>

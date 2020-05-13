@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="MyMagento\Todo\Api\TaskManagementInterface" type="MyMagento\Todo\Service\TaskManagement" />
+    <preference for="MyMagento\Todo\Api\TaskRepositoryInterface" type="MyMagento\Todo\Service\TaskRepository" />
+    <preference for="MyMagento\Todo\Api\Data\TaskInterface" type="MyMagento\Todo\Model\Task" />
+    <preference for="MyMagento\Todo\Api\Data\TaskSearchResultInterface" type="MyMagento\Todo\Model\ResourceModel\Task\Collection" />
+</config>

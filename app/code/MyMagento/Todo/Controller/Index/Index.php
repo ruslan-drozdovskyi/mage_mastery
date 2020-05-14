@@ -5,6 +5,7 @@ namespace MyMagento\Todo\Controller\Index;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Api\SearchCriteriaBuilder;
 use MyMagento\Todo\Model\TaskFactory;
 use MyMagento\Todo\Model\ResourceModel\Task as TaskResource;
 use MyMagento\Todo\Service\TaskRepository;
@@ -26,22 +27,29 @@ class Index extends Action
      */
     protected $taskRepository;
 
+    /**
+     * @var SearchCriteriaBuilder
+     */
+    protected $searchCriteriaBuilder;
+
     public function __construct(
         Context $context,
         TaskResource $taskResource,
         TaskFactory $taskFactory,
-        TaskRepository $taskRepository
+        TaskRepository $taskRepository,
+        SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         $this->taskResource = $taskResource;
         $this->taskFactory = $taskFactory;
         $this->taskRepository = $taskRepository;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         parent::__construct($context);
     }
 
     public function execute()
     {
-        $task = $this->taskRepository->get(1);
-        var_dump($task->getData());
+        $searchCriteria = $this->searchCriteriaBuilder->create();
+        var_dump($this->taskRepository->getList($searchCriteria)->getItems());
 //        $task = $this->taskFactory->create();
 //        $task->setData([
 //            'label' => 'New Task #100500',

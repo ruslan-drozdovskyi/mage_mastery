@@ -12,5 +12,5 @@ interface TaskRepositoryInterface
 {
    public function getList(SearchCriteriaInterface $searchCriteria): TaskSearchResultInterface;
 
-   public function get(\int $taskId);
+   public function get(int $taskId);
 }

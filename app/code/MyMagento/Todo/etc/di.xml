@@ -4,4 +4,5 @@
     <preference for="MyMagento\Todo\Api\TaskRepositoryInterface" type="MyMagento\Todo\Service\TaskRepository" />
     <preference for="MyMagento\Todo\Api\Data\TaskInterface" type="MyMagento\Todo\Model\Task" />
     <preference for="MyMagento\Todo\Api\Data\TaskSearchResultInterface" type="MyMagento\Todo\Model\ResourceModel\Task\Collection" />
+    <preference for="MyMagento\Todo\Api\CustomerTaskListInterface" type="MyMagento\Todo\Service\CustomerTaskList"/>
 </config>

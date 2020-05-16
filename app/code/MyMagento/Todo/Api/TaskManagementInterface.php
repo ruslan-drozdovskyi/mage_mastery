@@ -2,12 +2,14 @@
 
 namespace MyMagento\Todo\Api;
 
+use MyMagento\Todo\Api\Data\TaskInterface;
+
 /**
  * @api
  */
 interface TaskManagementInterface
 {
-    public function save();
+    public function save(TaskInterface $task);
 
-    public function delete();
+    public function delete(TaskInterface $task);
 }

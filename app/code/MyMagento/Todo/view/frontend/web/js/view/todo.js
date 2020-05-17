@@ -1,32 +1,32 @@
 define([
     'uiComponent',
     'jquery',
-    'Magento_Ui/js/modal/confirm'
-], function (Component, $, modal) {
+    'Magento_Ui/js/modal/confirm',
+    'MyMagento/js/service/task'
+], function (Component, $, modal, taskService) {
     'use strict';
     return Component.extend({
         defaults: {
             newTaskLabel: '',
             buttonSelector: '#add-new-task-button',
-            tasks: [
-                {id: 1, label: "Task #1", status: false},
-                {id: 2, label: "Task #2", status: false},
-                {id: 3, label: "Task #3", status: false},
-                {id: 4, label: "Task #4", status: true},
-            ]
+            tasks: []
         },
 
         initObservable: function () {
             this._super().observe(['tasks', 'newTaskLabel']);
-            this.tasks().push({id: 5, label: 'Task #5', status:false});
+            let self = this;
+            taskService.getList().then(function (tasks) {
+                self.tasks(tasks);
+                return tasks;
+            });
             return this;
         },
         switchStatus: function (data, event) {
             const taskId = $(event.target).data('id');
 
             let items = this.tasks().map((task) => {
-                if (task.id === taskId) {
-                    task.status = !task.status;
+                if (task.task_id === taskId) {
+                    task.status = task.status === 'open' ? 'complete' : 'open';
                 }
                 return task;
             });
@@ -53,7 +53,7 @@ define([
                             return;
                         }
                         self.tasks().forEach((task) => {
-                            if (task.id !== taskId) {
+                            if (task.task_id !== taskId) {
                                 tasks.push(task);
                             }
                         });

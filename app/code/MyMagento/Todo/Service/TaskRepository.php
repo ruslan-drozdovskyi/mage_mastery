@@ -4,6 +4,7 @@ namespace MyMagento\Todo\Service;
 
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
+use MyMagento\Todo\Api\Data\TaskInterface;
 use MyMagento\Todo\Api\Data\TaskSearchResultInterfaceFactory;
 use MyMagento\Todo\Api\Data\TaskSearchResultInterface;
 use MyMagento\Todo\Api\TaskRepositoryInterface;
@@ -44,10 +45,11 @@ class TaskRepository implements TaskRepositoryInterface
         $this->collectionProcessor = $collectionProcessor;
     }
 
-    public function get(int $taskId)
+    public function get(int $taskId): TaskInterface
     {
         $taskObj = $this->taskFactory->create();
-        return $this->resource->load($taskObj, $taskId);
+        $this->resource->load($taskObj, $taskId);
+        return $taskObj;
     }
 
     public function getList(SearchCriteriaInterface $searchCriteria): TaskSearchResultInterface

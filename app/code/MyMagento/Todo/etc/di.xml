@@ -5,4 +5,5 @@
     <preference for="MyMagento\Todo\Api\Data\TaskInterface" type="MyMagento\Todo\Model\Task" />
     <preference for="MyMagento\Todo\Api\Data\TaskSearchResultInterface" type="MyMagento\Todo\Model\ResourceModel\Task\Collection" />
     <preference for="MyMagento\Todo\Api\CustomerTaskListInterface" type="MyMagento\Todo\Service\CustomerTaskList"/>
+    <preference for="MyMagento\Todo\Api\TaskStatusManagementInterface" type="MyMagento\Todo\Service\TaskStatusManagement"/>
 </config>

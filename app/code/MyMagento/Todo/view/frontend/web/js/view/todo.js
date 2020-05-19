@@ -27,6 +27,7 @@ define([
             let items = this.tasks().map((task) => {
                 if (task.task_id === taskId) {
                     task.status = task.status === 'open' ? 'complete' : 'open';
+                    taskService.update(taskId, task.status);
                 }
                 return task;
             });

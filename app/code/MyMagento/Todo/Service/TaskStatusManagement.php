@@ -19,6 +19,11 @@ class TaskStatusManagement implements TaskStatusManagementInterface
      */
     protected $management;
 
+    /**
+     * TaskStatusManagement constructor.
+     * @param TaskRepositoryInterface $repository
+     * @param TaskManagementInterface $management
+     */
     public function __construct(
         TaskRepositoryInterface $repository,
         TaskManagementInterface $management
@@ -27,6 +32,11 @@ class TaskStatusManagement implements TaskStatusManagementInterface
         $this->management = $management;
     }
 
+    /**
+     * @param int $taskId
+     * @param string $status
+     * @return bool
+     */
     public function change(int $taskId, string $status): bool
     {
         if (!in_array($status, ['open', 'complete'])) {

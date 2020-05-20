@@ -2,7 +2,7 @@ define([
     'uiComponent',
     'jquery',
     'Magento_Ui/js/modal/confirm',
-    'MyMagento/js/service/task'
+    'MyMagento_Todo/js/service/task'
 ], function (Component, $, modal, taskService) {
     'use strict';
     return Component.extend({

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace MyMagento\Todo\Api\Data;
 
-use Magento\Tests\NamingConvention\true\string;
-
 /**
  * @api
  */
@@ -15,7 +13,7 @@ interface TaskInterface
      */
     public function getTaskId(): int;
 
-    /**'
+    /**
      * @return string
      */
     public function getStatus(): string;

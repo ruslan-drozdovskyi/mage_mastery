@@ -53,6 +53,11 @@ define([
                             self.tasks(tasks);
                             return;
                         }
+                        taskService.delete(self.tasks().find((task) => {
+                            if (task.task_id === taskId) {
+                                return task;
+                            }
+                        }));
                         self.tasks().forEach((task) => {
                             if (task.task_id !== taskId) {
                                 tasks.push(task);

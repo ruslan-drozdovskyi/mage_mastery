@@ -21,7 +21,7 @@
     </div>
 </div>
 <!-- ko if: ($data.tasks) -->
-<h2>Dynamic list of tasks</h2>
+<h2>My Tasks</h2>
 <ul class="tasks">
     <li repeat="foreach: tasks, item: 'task'">
         <a data-bind="
@@ -32,7 +32,7 @@
             click: switchStatus
         "></a>
         <span data-bind="text: task().label" class="label"/>
-        <a class="action delete"data-bind="
+        <a class="action delete" data-bind="
             attr: {
                 'data-id': task().task_id
             },
@@ -40,4 +40,10 @@
         ">Delete</a>
     </li>
 </ul>
+<!-- /ko -->
+
+<!-- ko if: tasksEmpty -->
+<div class="message info empty">
+    <span>There are no tasks. Add a new one.</span>
+</div>
 <!-- /ko -->

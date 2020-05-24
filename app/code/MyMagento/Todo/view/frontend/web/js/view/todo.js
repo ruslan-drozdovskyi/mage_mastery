@@ -8,12 +8,13 @@ define([
     return Component.extend({
         defaults: {
             newTaskLabel: '',
+            tasksEmpty: false,
             buttonSelector: '#add-new-task-button',
             tasks: []
         },
 
         initObservable: function () {
-            this._super().observe(['tasks', 'newTaskLabel']);
+            this._super().observe(['tasks', 'newTaskLabel', 'tasksEmpty']);
             let self = this;
             taskService.getList().then(function (tasks) {
                 self.tasks(tasks);
@@ -40,6 +41,7 @@ define([
                 label: this.newTaskLabel(),
                 status: false,
             });
+            this.tasksEmpty(false);
             this.newTaskLabel('');
         },
         deleteTask: function (taskId) {
@@ -49,15 +51,16 @@ define([
                 actions: {
                     confirm: function () {
                         let tasks = [];
-                        if (self.tasks().length === 1) {
-                            self.tasks(tasks);
-                            return;
-                        }
                         taskService.delete(self.tasks().find((task) => {
                             if (task.task_id === taskId) {
                                 return task;
                             }
                         }));
+                        if (self.tasks().length === 1) {
+                            self.tasks(tasks);
+                            self.tasksEmpty(true);
+                            return;
+                        }
                         self.tasks().forEach((task) => {
                             if (task.task_id !== taskId) {
                                 tasks.push(task);

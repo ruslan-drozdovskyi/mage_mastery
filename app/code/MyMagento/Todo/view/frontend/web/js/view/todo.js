@@ -36,13 +36,18 @@ define([
             this.tasks(items);
         },
         addTask: function () {
-            this.tasks.push({
-                id: Math.floor(Math.random() * 100),
+            const self = this;
+            var task = {
                 label: this.newTaskLabel(),
-                status: false,
-            });
-            this.tasksEmpty(false);
-            this.newTaskLabel('');
+                status: 'open',
+            }
+            taskService.create(task)
+                .then((taskId) => {
+                    task.task_id = taskId;
+                    self.tasks.push(task);
+                    self.tasksEmpty(false);
+                    self.newTaskLabel('');
+                });
         },
         deleteTask: function (taskId) {
             let self = this;

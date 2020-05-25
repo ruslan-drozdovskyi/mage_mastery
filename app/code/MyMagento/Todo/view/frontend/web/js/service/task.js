@@ -18,6 +18,12 @@ define(['mage/storage'], function (storage) {
                 'rest/V1/customer/todo/task/delete',
                 JSON.stringify({task: task})
             );
+        },
+        create: async function(task) {
+            return await storage.post(
+                'rest/V1/customer/todo/task/create',
+                JSON.stringify({task: task})
+            );
         }
     };
 });

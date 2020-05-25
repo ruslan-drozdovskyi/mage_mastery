@@ -2,8 +2,9 @@ define([
     'uiComponent',
     'jquery',
     'Magento_Ui/js/modal/confirm',
-    'MyMagento_Todo/js/service/task'
-], function (Component, $, modal, taskService) {
+    'MyMagento_Todo/js/service/task',
+    'MyMagento_Todo/js/model/loader'
+], function (Component, $, modal, taskService, loader) {
     'use strict';
     return Component.extend({
         defaults: {
@@ -41,12 +42,16 @@ define([
                 label: this.newTaskLabel(),
                 status: 'open',
             }
+            loader.startLoader();
             taskService.create(task)
                 .then((taskId) => {
                     task.task_id = taskId;
                     self.tasks.push(task);
                     self.tasksEmpty(false);
                     self.newTaskLabel('');
+                })
+                .finally(() => {
+                    loader.stopLoader();
                 });
         },
         deleteTask: function (taskId) {
